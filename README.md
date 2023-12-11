@@ -47,6 +47,18 @@ A collection of Azure Monitor or Sentinel Kusto Queries for your reference.
 
 ## Queries
 
+Linux update
+```
+Update
+//|where OSType != "Linux" and UpdateState == "Needed" and Optional == "false"
+| where Classification in ("Security Updates", "Critical Updates") 
+| where startofday(TimeGenerated) == startofday(now())
+| project TimeGenerated, Computer, Title, KBID, Classification, MSRCSeverity, PublishedDate, _ResourceId
+| sort by TimeGenerated desc
+| summarize any(KBID) by KBID, Title, Computer
+```
+
+
 ### User login to linux
 ```
 // Search In multiple tables 
