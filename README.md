@@ -47,6 +47,11 @@ A collection of Azure Monitor or Sentinel Kusto Queries for your reference.
 
 ## Queries
 
+### User login to linux
+// Search In multiple tables 
+// Search both Syslog and Event tables for the term "login". 
+search in (Syslog, Event) "New session"
+
 ### Monitor or Changes in Policy Detected
 
 ```
